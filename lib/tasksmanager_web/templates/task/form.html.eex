@@ -1,0 +1,47 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %> :
+    <%= text_input f, :title, class: "form-control" %>
+    <p class="text-danger">
+    <%= error_tag f, :title %>
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :description, class: "control-label" %> :
+    <%= textarea f, :description, class: "form-control" %>
+    <p class="text-danger">
+    <%= error_tag f, :description %>
+    </p>
+  </div>
+
+  <div class="form-group">
+    Task Status : <br/>
+    <%= select f, :completed, ["Completed": "Completed", "Not Started": "Not Started", "In Progress": "In Progress"], class: "form-control", prompt: "-- None --" %>
+    <%= error_tag f, :completed %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :timespent, class: "control-label" %> (in minutes) :
+    <%= number_input f, :timespent, class: "form-control", step: "15" , min: "0" , value: "0"%>
+    <%= error_tag f, :timespent %>
+  </div>
+
+  <div class="form-group">
+    Assign to <%= label f, :user_id, class: "control-label" %> :
+    <%= select f, :user_id, @users ,class: "form-control" , prompt: "-- None --" %>
+    <p class="text-danger">
+    <%= error_tag f, :user_id %>
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

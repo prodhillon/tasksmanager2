@@ -1,0 +1,10 @@
+<%= if @current_user do %>
+  <div class="row">
+    <div class="col">
+      <%= render TasksmanagerWeb.TaskView, "index.html",
+          Map.put(assigns, :action, task_path(@conn, :create)) %>
+    </div>
+  </div>
+<% end %>
+<hr />
+</div>

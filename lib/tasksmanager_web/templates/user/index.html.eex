@@ -1,0 +1,36 @@
+<h2>All Users</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+<tr>
+      <td><%= user.email %></td>
+      <td><%= user.name %></td>
+
+      <td class="text-right">
+        <%= if @current_user != nil do %>
+        <%= if @current_user.email === user.email do %>
+        <span><%= link "View", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete your account and your tasks", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Back to your Homepage", to: page_path(@conn, :feed) %></span>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+
+  </tbody>
+</table>
+
+<span><%= link "New User", to: user_path(@conn, :new) %></span>
+<br/>
+<span><%= link "Go back to Log In screen", to: page_path(@conn, :index) %></span>
+<br/>

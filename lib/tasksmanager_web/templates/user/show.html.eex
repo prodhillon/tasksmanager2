@@ -1,0 +1,24 @@
+<h2>User Details</h2>
+<ul>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<br/>
+<%= if @current_user === nil do %>
+<span><%= link "Go back to Log In screen", to: page_path(@conn, :index) %></span>
+<% end %>
+<br/>
+<%= if @current_user != nil do %>
+<span><%= link "Back to your Homepage", to: page_path(@conn, :feed) %></span>
+<% end %>

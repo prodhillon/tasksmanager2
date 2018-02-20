@@ -1,0 +1,21 @@
+<h1>Log In to Task Tracker</h1>
+<div class="tag_line"><i><b>....For tracking your tasks easily</b></i></div>
+<hr />
+   <!-- session_path(@conn, :create) -->
+   <%= form_tag("/session", method: :post) do %>
+
+     <div class="form-group">
+       Enter your Email:
+       <br/>
+       <input type="email"  name="email" placeholder="user@example.com" class= "form-control" required>
+     </div>
+     <br/>
+     <!-- passwords come later -->
+     <div class="form-group">
+       <button class="btn btn-primary">Log in</button>
+       <br/>
+       <br/>
+       New user ? <%= link "Register here", to: user_path(@conn, :new) %>
+       <br/>
+     </div>
+   <% end %>

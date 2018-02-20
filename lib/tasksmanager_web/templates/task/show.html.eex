@@ -1,0 +1,34 @@
+<h2>Task Details</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Completed:</strong>
+    <%= @task.completed %>
+  </li>
+
+  <li>
+    <strong>Timespent:</strong>
+    <%= @task.timespent %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @task.user.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+<br/>
+<span><%= link "Back to Homepage", to: page_path(@conn, :feed) %></span>

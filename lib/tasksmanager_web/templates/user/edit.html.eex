@@ -1,0 +1,10 @@
+<h2>Edit User</h2>
+
+<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :update, @user)) %>
+<%= if @current_user === nil do %>
+<span><%= link "Go back to Log In screen", to: page_path(@conn, :index) %></span>
+<% end %>
+<br/>
+<%= if @current_user != nil do %>
+<span><%= link "Back to your Homepage", to: page_path(@conn, :feed) %></span>
+<% end %>
