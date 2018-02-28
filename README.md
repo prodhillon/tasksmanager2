@@ -1,8 +1,47 @@
 # Tasksmanager
 
 Welcome to Task tracking application:
+********************HW07 ****************************************
 
-******************************************************************************
+The System will now have Managers and their Reportees.
+
+Registration process:
+While registering User should select their reporting manager. Assuming Manager account is already present in system.
+The User must select if he/she is playing role of manager or not by selecting the dropdown available.
+
+**********************************************************
+Tasks Assignment:
+Only user's manager can assign them a task. That task will show under Task report on Manager's dashboard.
+The assigned task will be shown on underlings dashboard.
+The underlings cannot reassign the task. they can only update the status and other fields.
+The Manager can see:
+
+Task report --> From their Homepage --> Your Underlings report
+Underlings Details --> Homepage ---> View your profile ---> View Detailed Profile
+
+*************************************************************
+Time Blocks:
+The Underlings can create multiple timeblocks for the tasks using Start/Stop working button. It will be on Pending tasks section.
+The newly created timeblocks can be viewed from VIEW TASK button.
+The Task can be edited using EDIT TASK button. And from there User can manually create new timeblock for that task.
+The Timespent will be calculated once timeblock is stopped. And timespent can be seen after clicking VIEW TASK from homepage.
+
+Updating Timeblocks:
+
+Go to Homepage---> View Timeblocks --->
+Then select populate start/stop timers and then click on "Update this" button near the timeblock which you want to update
+the timeblock.
+
+******************************************************************
+
+
+
+
+
+
+
+
+**********************************HW:06********************************************
 LOG IN SCREEN:
 
 The homepage of application is the log in page.
