@@ -27,12 +27,7 @@
     <%= error_tag f, :completed %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :timespent, class: "control-label" %> (in minutes) :
-    <%= number_input f, :timespent, class: "form-control", step: "15" , min: "0" , value: "0"%>
-    <%= error_tag f, :timespent %>
-  </div>
-
+  <%= if @current_user.manager === "Yes" do %>
   <div class="form-group">
     Assign to <%= label f, :user_id, class: "control-label" %> :
     <%= select f, :user_id, @users ,class: "form-control" , prompt: "-- None --" %>
@@ -40,6 +35,7 @@
     <%= error_tag f, :user_id %>
     </p>
   </div>
+  <% end %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

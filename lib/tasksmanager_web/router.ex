@@ -35,7 +35,8 @@ defmodule TasksmanagerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TasksmanagerWeb do
-  #   pipe_through :api
-  # end
+   scope "/api/v1", TasksmanagerWeb do
+    pipe_through :api
+    resources "/timeblocks", TimeBlockController, except: [:new]
+   end
 end

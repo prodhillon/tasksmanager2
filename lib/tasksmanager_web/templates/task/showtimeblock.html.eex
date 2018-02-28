@@ -1,0 +1,28 @@
+<h2>TimeBlock Details</h2>
+
+<ul>
+
+  <li>
+    <strong>Start time:</strong>
+    <%= @time_block.starttime %>
+  </li>
+
+  <li>
+    <strong>End time:</strong>
+    <%= @time_block.endtime %>
+  </li>
+
+  <li>
+    <strong>Task Id:</strong>
+    <%= @time_block.task_id %>
+  </li>
+
+  <li>
+    <strong>Timespent:</strong>
+    <%= @task.endtime - @task.starttime %>
+  </li>
+
+</ul>
+
+<br/>
+<span><%= link "Back to Homepage", to: page_path(@conn, :feed) %></span>

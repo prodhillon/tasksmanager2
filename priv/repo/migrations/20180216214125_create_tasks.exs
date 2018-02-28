@@ -7,7 +7,7 @@ defmodule Tasksmanager.Repo.Migrations.CreateTasks do
       add :description, :text, null: false
       add :completed, :text
       add :timespent, :integer
-      add :user_id, references(:users, on_delete: :delete_all), null: false
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

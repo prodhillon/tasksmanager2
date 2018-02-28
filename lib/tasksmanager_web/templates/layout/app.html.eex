@@ -11,20 +11,28 @@
     <title>Hello Tasksmanager!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <div class="row">
-            <div class="col-3 offset-9">
-              <%= if @current_user do %>
-                <p>
-                  Logged in as: <%= @current_user.name %> |
-                  <%= link "Log Out", to: "/session", method: :delete %>
-                </p>
-              <% else %>
-                <p>Not logged in.</p>
-              <% end %>
-            </div>
-    </div>
+    <%= if @current_user do %>
+      <div class="col-9">
+        <p class="p-4">
+          <a href="/feed">Your Homepage</a> |
+          <a href="/users">View your Profile</a>
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="p-4">
+          Logged in as: <%= @current_user.name %> |
+          <%= link "Log Out", to: "/session", method: :delete %>
+        </p>
+      </div>
+    <% else %>
+      <div class="col-3 offset-9">
+        <p>Not logged in.</p>
+      </div>
+    <% end %>
+  </div>
 
   </head>
-  
+
   <body>
     <div class="container">
 

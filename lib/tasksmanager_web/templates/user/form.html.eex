@@ -26,6 +26,26 @@
   </div>
 
   <div class="form-group">
+    Are you a reporting manager in your firm? : <br/>
+    <%= select f, :manager, ["No": "No", "Yes": "Yes"], class: "form-control" %>
+    <%= if message = f.errors[:manager] do %>
+    <p class="text-danger">
+      <span><%= translate_error(message) %></span>
+    </p>
+      <% end %>
+  </div>
+
+  <div class="form-group">
+    Please select your reporting manager if any :
+    <%= select f, :select_manager_id, @allusers ,class: "form-control" , prompt: "-- None --" %>
+    <%= if message = f.errors[:select_manager_id] do %>
+    <p class="text-danger">
+      <span><%= translate_error(message) %></span>
+    </p>
+      <% end %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

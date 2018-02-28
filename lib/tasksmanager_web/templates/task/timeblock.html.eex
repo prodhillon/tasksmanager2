@@ -1,0 +1,30 @@
+<%= form_for @conn, time_block_path(@conn, :create), [as: :time_block], fn f -> %>
+Please enter Task ID for which you want timeblock to be created:
+<div class="form-group">
+  Task ID :
+  <%= text_input f, :task_id, class: "form-control"   %>
+  <p class="text-danger">
+  <%= error_tag f, :task_id %>
+  </p>
+</div>
+
+  <div class="form-group">
+    Start Time
+    <%= datetime_select f, :starttime, class: "form-control" %>
+    <p class="text-danger">
+    <%= error_tag f, :starttime %>
+    </p>
+  </div>
+
+  <div class="form-group">
+    End Time
+    <%= datetime_select f, :endtime, class: "form-control" %>
+    <p class="text-danger">
+    <%= error_tag f, :endtime %>
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Update Time", class: "btn btn-primary" %>
+  </div>
+<% end %>

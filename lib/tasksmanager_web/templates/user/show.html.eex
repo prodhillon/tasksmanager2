@@ -11,6 +11,43 @@
     <%= @user.name %>
   </li>
 
+  <li>
+    <strong>Manager Role ?</strong>
+    <%= @user.manager %>
+  </li>
+
+  <%= if @user.select_manager != nil do %>
+  <li>
+    <strong>Manager email:</strong>
+    <%= @user.select_manager.email %>
+  </li>
+  <% end %>
+
+  <%= if @user.select_manager == nil do %>
+  <li>
+    <strong>Manager email: N/A</strong>
+  </li>
+  <% end %>
+
+  <h2>Your Underlings</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+<%= for underling <- @underlings do %>
+  <tr>
+    <td><%= Enum.at(underling,0) %></td>
+    <td><%= Enum.at(underling,1) %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
 </ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>

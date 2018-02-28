@@ -1,4 +1,4 @@
-<h2>All Users</h2>
+<h2>Your Details </h2>
 <table class="table">
   <thead>
     <tr>
@@ -10,21 +10,23 @@
   </thead>
   <tbody>
 <%= for user <- @users do %>
+<%= if @current_user != nil do %>
+<%= if @current_user.email === user.email do %>
 <tr>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
 
       <td class="text-right">
-        <%= if @current_user != nil do %>
-        <%= if @current_user.email === user.email do %>
-        <span><%= link "View", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
+
+        <span><%= link "View your Detailed Profile", to: user_path(@conn, :show, user),  class: "btn btn-warning btn-xs" %></span>
         <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete your account and your tasks", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
         <span><%= link "Back to your Homepage", to: page_path(@conn, :feed) %></span>
-        <% end %>
-        <% end %>
+
       </td>
     </tr>
+    <% end %>
+    <% end %>
 <% end %>
 
   </tbody>

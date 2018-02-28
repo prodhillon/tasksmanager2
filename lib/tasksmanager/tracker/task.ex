@@ -2,6 +2,7 @@ defmodule Tasksmanager.Tracker.Task do
   use Ecto.Schema
   import Ecto.Changeset
   alias Tasksmanager.Tracker.Task
+  alias Tasksmanager.TimeBlock
 
 
   schema "tasks" do
@@ -10,6 +11,8 @@ defmodule Tasksmanager.Tracker.Task do
     field :timespent, :integer
     field :title, :string
     belongs_to :user, Tasksmanager.Accounts.User
+    has_one :timeblock_tasks, TimeBlock, foreign_key: :task_id
+
     timestamps()
   end
 
@@ -17,7 +20,7 @@ defmodule Tasksmanager.Tracker.Task do
   def changeset(%Task{} = task, attrs) do
     task
     |> cast(attrs, [:title, :description, :completed, :timespent, :user_id])
-    |> validate_required([:title, :description, :user_id])
+    |> validate_required([:title, :description])
 
   end
 

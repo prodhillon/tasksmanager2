@@ -35,7 +35,12 @@ defmodule Tasksmanager.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+
+
+  def get_user!(id) do
+     Repo.get!(User, id)
+     |> Repo.preload(:select_manager)
+  end
   def get_user(id), do: Repo.get(User, id)
 
   @doc """

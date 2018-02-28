@@ -1,3 +1,9 @@
+<script>
+ window.time_block_path = "<%= time_block_path(@conn, :index) %>";
+ window.current_user_id = "<%= @current_user.id %>";
+</script>
+
+<hr />
 <h2>Your Pending Tasks &#10071;</h2>
 <table class="table">
   <thead>
@@ -5,7 +11,6 @@
       <th>Title</th>
       <th>Description</th>
       <th>Task Status</th>
-      <th>Timespent (in minutes)</th>
       <th>Assigned To</th>
       <th></th>
     </tr>
@@ -18,13 +23,21 @@
       <td><%= task.title %></td>
       <td><%= task.description %></td>
       <td><%= task.completed %></td>
-      <td><%= task.timespent %></td>
       <td><%= task.user.name %></td>
+
+      <td>
+     <button class="timeblock-button btn btn-default"
+             data-task-id="<%= task.id %>"
+             data-timeblock="<%= @timeblocks[task.id] %>"
+             data-starttime="<%= DateTime.utc_now %>"
+             data-endtime="<%= DateTime.utc_now %>"
+       Start Working
+     </button>
+      </td>
 
       <td class="text-right">
         <span><%= link "View Task", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit Task", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete Task", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
     <% end %>
@@ -42,7 +55,6 @@
       <th>Title</th>
       <th>Description</th>
       <th>Task Status</th>
-      <th>Timespent (in minutes)</th>
       <th>Assigned To</th>
       <th></th>
     </tr>
@@ -55,13 +67,11 @@
       <td><%= task.title %></td>
       <td><%= task.description %></td>
       <td><%= task.completed %></td>
-      <td><%= task.timespent %></td>
       <td><%= task.user.name %></td>
 
       <td class="text-right">
         <span><%= link "View Task", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit Task", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete Task", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
     <% end %>
@@ -71,6 +81,31 @@
 </table>
 <hr />
 
-<h3> Want to create new Task ? <span><%= link "click here", to: task_path(@conn, :new) %></span></h3>
-<br/>
-View all users <%= link "click here", to: user_path(@conn, :index) %>
+<%= if @current_user.manager === "Yes" do %>
+<h2>Your Underlings Task Report  &#x261F;</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Task Status</th>
+      <th>Assigned To</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for task <- @underlings_tasks do %>
+    <tr>
+      <td><%= Enum.at(task, 0) %></td>
+      <td><%= Enum.at(task, 1) %></td>
+      <td><%= Enum.at(task, 2) %></td>
+      <td><%= Enum.at(task, 3) %></td>
+    </tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
+
+<%= if @current_user.manager === "Yes" do %>
+<h3> Want to create new Task for your reportees ? <span><%= link "click here", to: task_path(@conn, :new) %></span></h3>
+<% end %>

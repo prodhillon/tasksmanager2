@@ -1,5 +1,50 @@
+<script>
+
+window.time_block_path = "<%= time_block_path(@conn, :index) %>";
+
+function test(taskid){
+        console.log("inside test" +taskid)
+        var sdate = document.getElementById("sdate").value,
+        edate = document.getElementById("edate").value
+        console.log("sdate" + sdate)
+        var d = new Date(sdate);
+        var d1 = new Date(edate);
+        var timeZoneFromDB = -10.00;
+        var tzDifference = timeZoneFromDB * 60 + d.getTimezoneOffset();
+        var stime = new Date(d.getTime() + tzDifference * 60 * 1000);
+        var etime = new Date(d1.getTime() + tzDifference * 60 * 1000);
+
+    let text = JSON.stringify({
+      time_block: {
+          endtime: etime,
+          starttime: stime,
+          task_id: taskid
+        },
+    });
+
+    $.ajax(time_block_path, {
+      method: "POST",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: text,
+      success: (resp) => {
+        alert("Time Block created. Please check the task view page");},
+    });
+}
+</script>
+
+
 <h2>Edit Task</h2>
 
 <%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
+
+<h3>Add Timeblock for this task</h3>
+<hr/>
+
+  StartTime:<input id="sdate" type="datetime-local" name="task_date" />
+  EndTime:<input id="edate" type="datetime-local" name="task_time" />
+  <input id="updatetime" type="button" value="Add" onclick="test(<%= @task.id %>);" />
+<br/>
+<br/>
 
 <span><%= link "Back", to: page_path(@conn, :feed) %></span>
